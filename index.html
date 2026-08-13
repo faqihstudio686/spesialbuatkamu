@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Faqih × Putri — Our Story</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:#060509;
+  color:#fff;
+  font-family:Arial,sans-serif;
+  overflow-x:hidden;
+}
+
+/* BACKGROUND */
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-5;
+  background:
+    radial-gradient(circle at 20% 20%,#ff2d6f22,transparent 30%),
+    radial-gradient(circle at 80% 30%,#9b4dff22,transparent 30%),
+    radial-gradient(circle at 50% 100%,#ff174d18,transparent 35%),
+    #060509;
+}
+
+#stars{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+}
+
+.star{
+  position:absolute;
+  width:2px;height:2px;
+  background:white;
+  border-radius:50%;
+  box-shadow:0 0 8px #fff;
+  animation:twinkle 3s infinite ease-in-out;
+}
+
+@keyframes twinkle{
+  0%,100%{opacity:.15;transform:scale(.5)}
+  50%{opacity:1;transform:scale(1.5)}
+}
+
+/* OPENING */
+#opening{
+  position:fixed;
+  inset:0;
+  z-index:999;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  background:
+    radial-gradient(circle at center,#301022,#100812 42%,#040306);
+  transition:1.2s;
+}
+
+#opening.hide{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+
+.glow{
+  position:absolute;
+  width:260px;height:260px;
+  border-radius:50%;
+  background:#ff286f;
+  filter:blur(120px);
+  opacity:.22;
+  animation:pulse 3s infinite;
+}
+
+@keyframes pulse{
+  0%,100%{transform:scale(.7);opacity:.12}
+  50%{transform:scale(1.35);opacity:.3}
+}
+
+.orbit{
+  position:absolute;
+  width:410px;height:410px;
+  border:1px solid #ff75a51c;
+  border-radius:50%;
+  animation:spin 14s linear infinite;
+}
+
+.orbit:after{
+  content:"";
+  position:absolute;
+  width:7px;height:7px;
+  background:#ff6398;
+  border-radius:50%;
+  top:20px;
+  left:50%;
+  box-shadow:0 0 20px #ff6398,0 0 40px #ff6398;
+}
+
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.opening-content{
+  position:relative;
+  z-index:5;
+  padding:20px;
+}
+
+.eyebrow{
+  color:#c99aaa;
+  font-size:10px;
+  letter-spacing:5px;
+  margin-bottom:25px;
+  animation:up 1s both;
+}
+
+.names{
+  font-family:Georgia,serif;
+  font-size:clamp(50px,12vw,100px);
+  font-weight:normal;
+  letter-spacing:-4px;
+  animation:nameIn 1.5s both;
+}
+
+.names span{
+  color:#ff6698;
+  font-style:italic;
+  margin:0 8px;
+}
+
+.open-date{
+  margin-top:20px;
+  color:#777;
+  letter-spacing:3px;
+  font-size:11px;
+}
+
+.open-btn{
+  margin-top:38px;
+  padding:14px 25px;
+  border-radius:30px;
+  border:1px solid #ffffff20;
+  background:#ffffff08;
+  color:white;
+  backdrop-filter:blur(15px);
+  cursor:pointer;
+  transition:.3s;
+}
+
+.open-btn:hover{
+  transform:translateY(-4px);
+  background:#ff3c7d20;
+  box-shadow:0 10px 40px #ff246d20;
+}
+
+@keyframes up{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:none}
+}
+
+@keyframes nameIn{
+  from{opacity:0;transform:translateY(35px) scale(.9);filter:blur(12px)}
+  to{opacity:1;transform:none;filter:blur(0)}
+}
+
+/* MAIN */
+main{
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s;
+}
+
+main.show{
+  opacity:1;
+  transform:none;
+}
+
+/* NAV */
+nav{
+  position:fixed;
+  top:18px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:50;
+  padding:10px 18px;
+  border:1px solid #ffffff12;
+  border-radius:30px;
+  background:#0c0910aa;
+  backdrop-filter:blur(20px);
+  color:#aaa;
+  font-size:9px;
+  letter-spacing:3px;
+}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:100px 20px 70px;
+}
+
+.hero-inner{max-width:750px}
+
+.small{
+  color:#ff6798;
+  letter-spacing:5px;
+  font-size:10px;
+  margin-bottom:25px;
+}
+
+.hero h1{
+  font-family:Georgia,serif;
+  font-weight:normal;
+  font-size:clamp(55px,12vw,110px);
+  line-height:.9;
+}
+
+.hero h1 i{color:#ff6798}
+
+.hero p{
+  color:#99939f;
+  line-height:1.9;
+  font-size:14px;
+  max-width:550px;
+  margin:30px auto;
+}
+
+/* SECTION */
+.section{
+  width:min(850px,90%);
+  margin:0 auto 120px;
+}
+
+.card{
+  padding:45px;
+  border:1px solid #ffffff0d;
+  border-radius:25px;
+  background:linear-gradient(145deg,#ffffff09,#ffffff02);
+  backdrop-filter:blur(18px);
+  box-shadow:0 30px 80px #0008;
+}
+
+.card h2{
+  font-family:Georgia,serif;
+  font-size:32px;
+  font-weight:normal;
+  margin-bottom:20px;
+}
+
+.card p{
+  color:#aaa;
+  line-height:1.9;
+  font-size:14px;
+}
+
+/* HEART */
+.big-heart{
+  font-size:40px;
+  margin-bottom:20px;
+  animation:heartbeat 1.6s infinite;
+}
+
+@keyframes heartbeat{
+  0%,100%{transform:scale(1)}
+  15%{transform:scale(1.2)}
+  30%{transform:scale(1)}
+}
+
+/* COUNTER */
+.counter{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+
+.count{
+  padding:25px 10px;
+  text-align:center;
+  border-radius:18px;
+  background:#100d14;
+  border:1px solid #ffffff0a;
+}
+
+.count strong{
+  display:block;
+  color:#ff6798;
+  font-size:28px;
+  margin-bottom:7px;
+}
+
+.count span{
+  color:#666;
+  font-size:9px;
+  letter-spacing:2px;
+}
+
+/* TIMELINE */
+.timeline{
+  position:relative;
+  margin-top:35px;
+}
+
+.timeline:before{
+  content:"";
+  position:absolute;
+  left:12px;
+  top:0;
+  bottom:0;
+  width:1px;
+  background:linear-gradient(#ff6798,#ffffff05);
+}
+
+.event{
+  position:relative;
+  padding:0 0 35px 42px;
+}
+
+.event:before{
+  content:"♥";
+  position:absolute;
+  left:4px;
+  top:0;
+  color:#ff6798;
+  font-size:15px;
+}
+
+.event small{
+  color:#ff6798;
+  letter-spacing:2px;
+  font-size:9px;
+}
+
+.event h3{
+  margin:8px 0;
+  font-family:Georgia,serif;
+  font-weight:normal;
+}
+
+.event p{
+  font-size:13px;
+}
+
+/* REASONS */
+.reasons{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+  margin-top:25px;
+}
+
+.reason{
+  padding:25px 18px;
+  border-radius:18px;
+  background:#0f0c13;
+  border:1px solid #ffffff0a;
+  transition:.3s;
+}
+
+.reason:hover{
+  transform:translateY(-7px);
+  border-color:#ff679833;
+}
+
+.reason b{
+  display:block;
+  color:#ff6798;
+  font-size:24px;
+  margin-bottom:15px;
+}
+
+.reason h3{
+  font-size:14px;
+  margin-bottom:8px;
+}
+
+.reason p{
+  font-size:11px;
+  line-height:1.7;
+}
+
+/* FINAL */
+.final{
+  min-height:70vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+.final h2{
+  font-family:Georgia,serif;
+  font-size:clamp(40px,8vw,80px);
+  font-weight:normal;
+}
+
+.final h2 span{
+  color:#ff6798;
+  font-style:italic;
+}
+
+.final p{
+  color:#777;
+  margin-top:20px;
+  font-size:12px;
+}
+
+/* HEART BURST */
+.love{
+  position:fixed;
+  pointer-events:none;
+  z-index:1000;
+  animation:heartFly 1.2s forwards;
+}
+
+@keyframes heartFly{
+  0%{
+    opacity:1;
+    transform:translate(0,0) scale(.5);
+  }
+  100%{
+    opacity:0;
+    transform:
+      translate(var(--x),var(--y))
+      rotate(var(--r))
+      scale(1.4);
+  }
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  color:#4d4850;
+  padding:50px 20px;
+  font-size:9px;
+  letter-spacing:3px;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+
+  .orbit{
+    width:300px;
+    height:300px;
+  }
+
+  .names{
+    font-size:55px;
+  }
+
+  .card{
+    padding:28px 22px;
+  }
+
+  .counter{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .reasons{
+    grid-template-columns:1fr;
+  }
+
+  .count strong{
+    font-size:21px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="stars"></div>
+
+<!-- OPENING -->
+<section id="opening">
+
+  <div class="glow"></div>
+  <div class="orbit"></div>
+
+  <div class="opening-content">
+
+    <div class="eyebrow">
+      A LITTLE STORY ABOUT US
+    </div>
+
+    <div class="names">
+      Faqih <span>×</span> Putri
+    </div>
+
+    <div class="open-date">
+      10 JULI 2026 • AND STILL COUNTING
+    </div>
+
+    <button class="open-btn" onclick="openStory()">
+      Buka cerita kita&nbsp; →
+    </button>
+
+  </div>
+
+</section>
+
+
+<main id="main">
+
+<nav>
+  OUR LITTLE UNIVERSE
+</nav>
+
+
+<!-- HERO -->
+<section class="hero">
+
+  <div class="hero-inner">
+
+    <div class="small">
+      THIS IS OUR STORY
+    </div>
+
+    <h1>
+      Just you.<br>
+      Just <i>me.</i>
+    </h1>
+
+    <p>
+      Di antara begitu banyak manusia yang ada di dunia,
+      entah bagaimana semesta memilih untuk mempertemukan
+      kita. Dan dari sebuah pertemuan kecil itu,
+      lahirlah cerita yang ingin terus aku jaga.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- SURAT -->
+<section class="section">
+
+  <div class="card">
+
+    <div class="big-heart">♥</div>
+
+    <h2>
+      Untuk Putri
+    </h2>
+
+    <p>
+      Aku nggak tahu harus mulai dari mana,
+      karena terkadang perasaan yang besar memang
+      susah dijelaskan lewat kata-kata.
+
+      <br><br>
+
+      Tapi aku ingin kamu tahu bahwa sejak
+      10 Juli 2026, ada satu cerita baru yang
+      ingin aku simpan baik-baik.
+
+      <br><br>
+
+      Terima kasih karena sudah hadir.
+      Terima kasih untuk setiap percakapan,
+      setiap tawa, setiap perhatian kecil,
+      dan semua hal sederhana yang ternyata
+      bisa menjadi begitu berarti.
+
+      <br><br>
+
+      Aku nggak menjanjikan semuanya akan selalu
+      sempurna. Tapi aku ingin selalu berusaha
+      memberikan versi terbaik dari diriku.
+
+      <br><br>
+
+      Kalau suatu hari nanti kita melihat kembali
+      halaman ini, semoga kita bisa tersenyum
+      dan berkata:
+
+      <br><br>
+
+      <i>
+      "Ternyata kita sudah sejauh ini."
+      </i>
+
+      <br><br>
+
+      — Faqih ❤️
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- COUNTER -->
+<section class="section">
+
+  <div class="card">
+
+    <div class="small">
+      SINCE THE DAY
+    </div>
+
+    <div class="counter">
+
+      <div class="count">
+        <strong id="days">000</strong>
+        <span>DAYS</span>
+      </div>
+
+      <div class="count">
+        <strong>∞</strong>
+        <span>MEMORIES</span>
+      </div>
+
+      <div class="count">
+        <strong>01</strong>
+        <span>STORY</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- TIMELINE -->
+<section class="section">
+
+  <div class="card">
+
+    <div class="small">
+      OUR LITTLE TIMELINE
+    </div>
+
+    <h2>
+      Beberapa halaman
+    </h2>
+
+    <div class="timeline">
+
+      <div class="event">
+        <small>10 JULI 2026</small>
+        <h3>Awal dari semuanya</h3>
+        <p>
+          Hari ketika cerita Faqih dan Putri
+          mulai ditulis.
+        </p>
+      </div>
+
+      <div class="event">
+        <small>OUR NEXT CHAPTER</small>
+        <h3>Lebih banyak cerita</h3>
+        <p>
+          Akan ada lebih banyak tawa,
+          percakapan, dan kenangan yang
+          menunggu untuk dibuat.
+        </p>
+      </div>
+
+      <div class="event">
+        <small>ONE DAY</small>
+        <h3>Kita melihat ke belakang</h3>
+        <p>
+          Dan menyadari bahwa semua hal
+          kecil yang kita lalui ternyata
+          punya arti yang besar.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ALASAN -->
+<section class="section">
+
+  <div class="card">
+
+    <div class="small">
+      WHY YOU?
+    </div>
+
+    <h2>
+      Kenapa Putri?
+    </h2>
+
+    <div class="reasons">
+
+      <div class="reason">
+        <b>01</b>
+        <h3>Senyummu</h3>
+        <p>
+          Ada sesuatu dari senyummu yang
+          selalu bisa membuat hari terasa
+          sedikit lebih baik.
+        </p>
+      </div>
+
+      <div class="reason">
+        <b>02</b>
+        <h3>Kehadiranmu</h3>
+        <p>
+          Bahkan tanpa melakukan sesuatu
+          yang luar biasa, kehadiranmu
+          sudah cukup berarti.
+        </p>
+      </div>
+
+      <div class="reason">
+        <b>03</b>
+        <h3>Kamu ya kamu</h3>
+        <p>
+          Bukan karena harus sempurna.
+          Justru karena kamu menjadi
+          dirimu sendiri.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- FINAL -->
+<section class="final">
+
+  <div>
+
+    <div class="small">
+      AND THIS ISN'T THE END
+    </div>
+
+    <h2>
+      Faqih <span>×</span> Putri
+    </h2>
+
+    <p>
+      One story. Two people. Countless memories. ❤️
+    </p>
+
+  </div>
+
+</section>
+
+
+<footer>
+  MADE Faqih WITH ♥ FOR PUTRI — 10 JULI 2026
+</footer>
+
+</main>
+
+
+<script>
+
+/* STARS */
+
+const stars=document.getElementById("stars");
+
+for(let i=0;i<90;i++){
+
+  const s=document.createElement("div");
+
+  s.className="star";
+
+  s.style.left=Math.random()*100+"%";
+  s.style.top=Math.random()*100+"%";
+
+  s.style.animationDelay=
+    Math.random()*4+"s";
+
+  s.style.animationDuration=
+    2+Math.random()*4+"s";
+
+  stars.appendChild(s);
+}
+
+
+/* OPEN STORY */
+
+function openStory(){
+
+  const opening=
+    document.getElementById("opening");
+
+  const main=
+    document.getElementById("main");
+
+  /* ledakan hati */
+
+  for(let i=0;i<35;i++){
+
+    const h=document.createElement("div");
+
+    h.className="love";
+    h.textContent=
+      Math.random()>.5 ? "♥" : "♡";
+
+    h.style.left="50%";
+    h.style.top="50%";
+
+    h.style.color=
+      Math.random()>.5
+      ? "#ff6798"
+      : "#ffb0ca";
+
+    h.style.setProperty(
+      "--x",
+      (Math.random()*500-250)+"px"
+    );
+
+    h.style.setProperty(
+      "--y",
+      (Math.random()*500-250)+"px"
+    );
+
+    h.style.setProperty(
+      "--r",
+      (Math.random()*120-60)+"deg"
+    );
+
+    document.body.appendChild(h);
+
+    setTimeout(()=>{
+      h.remove();
+    },1300);
+  }
+
+  opening.classList.add("hide");
+
+  setTimeout(()=>{
+    main.classList.add("show");
+    window.scrollTo(0,0);
+  },500);
+}
+
+
+/* COUNTER */
+
+const startDate=
+  new Date("2026-07-10T00:00:00");
+
+function updateCounter(){
+
+  const now=new Date();
+
+  const diff=now-startDate;
+
+  const days=Math.floor(
+    diff/(1000*60*60*24)
+  );
+
+  document.getElementById("days")
+    .textContent=
+    Math.max(days,0)
+    .toString()
+    .padStart(3,"0");
+}
+
+updateCounter();
+
+
+/* HEART WHEN CLICK */
+
+document.addEventListener("click",function(e){
+
+  if(
+    e.target.classList.contains("open-btn")
+  ) return;
+
+  const h=document.createElement("div");
+
+  h.className="love";
+  h.textContent="♥";
+
+  h.style.left=e.clientX+"px";
+  h.style.top=e.clientY+"px";
+
+  h.style.color="#ff6798";
+
+  h.style.setProperty(
+    "--x",
+    (Math.random()*120-60)+"px"
+  );
+
+  h.style.setProperty(
+    "--y",
+    (-80-Math.random()*80)+"px"
+  );
+
+  h.style.setProperty(
+    "--r",
+    (Math.random()*90-45)+"deg"
+  );
+
+  document.body.appendChild(h);
+
+  setTimeout(()=>{
+    h.remove();
+  },1200);
+
+});
+
+
+/* MOUSE LIGHT */
+
+document.addEventListener(
+"mousemove",
+function(e){
+
+  const x=
+    e.clientX/window.innerWidth*100;
+
+  const y=
+    e.clientY/window.innerHeight*100;
+
+  document.body.style.background=
+    `radial-gradient(
+      circle at ${x}% ${y}%,
+      #ff236d0b,
+      #060509 35%
+    )`;
+
+});
+
+
+/* ESC */
+
+document.addEventListener(
+"keydown",
+function(e){
+
+  if(e.key==="Escape"){
+    openStory();
+  }
+
+});
+
+</script>
+
+</body>
+</html>
